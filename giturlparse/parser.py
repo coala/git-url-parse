@@ -77,6 +77,7 @@ class Parser(object):
                   '([\d]+){0,1}'
                   '(/(.+)/(.+).git)')
         m1 = re.search(regexp, self._url)
+
         regexp = (r'^(?:(.+)@)*'
                   '([a-z0-9_.-]*)[:/]*'
                   '([\d]+){0,1}'
