@@ -104,6 +104,17 @@ def git_urls():
             'name': 'repo',
             'owner': 'owner',
         },
+        'user@foo-example.com:owner/repo.git': {
+            'pathname': 'owner/repo.git',
+            'protocols': [],
+            'protocol': 'ssh',
+            'href': 'user@foo-example.com:owner/repo.git',
+            'resource': 'foo-example.com',
+            'user': 'user',
+            'port': None,
+            'name': 'repo',
+            'owner': 'owner',
+        },
         'example.com:owner/repo.git': {
             'pathname': 'owner/repo.git',
             'protocols': [],
