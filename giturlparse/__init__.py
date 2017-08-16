@@ -24,7 +24,7 @@ from giturlparse import parser
 
 import pbr.version
 
-version_info = pbr.version.VersionInfo('molecule')
+version_info = pbr.version.VersionInfo('git-url-parse')
 __version__ = version_info.release_string()
 
 
