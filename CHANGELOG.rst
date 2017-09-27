@@ -2,6 +2,11 @@
 History
 *******
 
+1.0.2
+=====
+
+* Corrected pbr version info package name.
+
 1.0.1
 =====
 
