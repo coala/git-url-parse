@@ -61,7 +61,7 @@ class Parser(object):
         d = {
             'pathname': None,
             'protocols': self._get_protocols(),
-            'protocol': None,
+            'protocol': 'ssh',
             'href': self._url,
             'resource': None,
             'user': None,
@@ -69,36 +69,23 @@ class Parser(object):
             'name': None,
             'owner': None,
         }
-
-        regexp = (r'^(https?|git|ssh|rsync)\://'
-                  '(?:(.+)@)*'
-                  '([a-z0-9_.-]*)'
-                  '[:/]*'
-                  '([\d]+){0,1}'
-                  '(/(.+)/(.+).git)')
-        m1 = re.search(regexp, self._url)
-
-        regexp = (r'^(?:(.+)@)*'
-                  '([a-z0-9_.-]*)[:/]*'
-                  '([\d]+){0,1}'
-                  '([:/](.+)/(.+).git)')
-        m2 = re.search(regexp, self._url)
-
-        if m1:
-            d['pathname'] = m1.group(5)
-            d['protocol'] = m1.group(1)
-            d['resource'] = m1.group(3)
-            d['user'] = m1.group(2)
-            d['port'] = m1.group(4)
-            d['name'] = m1.group(7)
-            d['owner'] = m1.group(6)
-        elif m2:
-            d['pathname'] = re.sub(r'^:', '', m2.group(4))
-            d['protocol'] = 'ssh'
-            d['resource'] = m2.group(2)
-            d['user'] = m2.group(1)
-            d['name'] = m2.group(6)
-            d['owner'] = m2.group(5)
+        regexes = [
+            (r'^(?P<protocol>https?|git|ssh|rsync)\://'
+                '(?:(?P<user>.+)@)*'
+                '(?P<resource>[a-z0-9_.-]*)'
+                '[:/]*'
+                '(?P<port>[\d]+){0,1}'
+                '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
+            (r'^(?:(?P<user>.+)@)*'
+                '(?P<resource>[a-z0-9_.-]*)[:/]*'
+                '(?P<port>[\d]+){0,1}'
+                '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)')
+                ]
+        for regex in regexes:
+            if re.search(regex, self._url):
+                m = re.search(regex, self._url)
+                d.update( m.groupdict() )
+                break
         else:
             msg = "Invalid URL '{}'".format(self._url)
             raise ParserError(msg)
