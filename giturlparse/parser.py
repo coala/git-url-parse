@@ -69,16 +69,30 @@ class Parser(object):
             'name': None,
             'owner': None,
         }
-        regexes = [(r'^(?P<protocol>https?|git|ssh|rsync)\://'
-                    '(?:(?P<user>.+)@)*'
-                    '(?P<resource>[a-z0-9_.-]*)'
-                    '[:/]*'
-                    '(?P<port>[\d]+){0,1}'
-                    '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
-                   (r'^(?:(?P<user>.+)@)*'
-                    '(?P<resource>[a-z0-9_.-]*)[:/]*'
-                    '(?P<port>[\d]+){0,1}'
-                    '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)')]
+        regexes = [
+            (r'^(?P<protocol>https?|git|ssh|rsync)\://'
+             '(?:(?P<user>.+)@)*'
+             '(?P<resource>[a-z0-9_.-]*)'
+             '[:/]*'
+             '(?P<port>[\d]+){0,1}'
+             '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
+            (r'(git\+)?'
+             '((?P<protocol>\w+)://)'
+             '((?P<user>\w+)@)?'
+             '((?P<resource>[\w\.\-]+))'
+             '(:(?P<port>\d+))?'
+             '(?P<pathname>(\/(?P<owner>\w+)/)?'
+             '(\/?(?P<name>[\w\-]+)(\.git)?)?)'),
+            (r'^(?:(?P<user>.+)@)*'
+             '(?P<resource>[a-z0-9_.-]*)[:/]*'
+             '(?P<port>[\d]+){0,1}'
+             '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)'),
+            (r'((?P<user>\w+)@)?'
+             '((?P<resource>[\w\.\-]+))'
+             '[\:\/]{1,2}'
+             '(?P<pathname>((?P<owner>\w+)/)?'
+             '((?P<name>[\w\-]+)(\.git)?)?)'),
+        ]
         for regex in regexes:
             if re.search(regex, self._url):
                 m = re.search(regex, self._url)
