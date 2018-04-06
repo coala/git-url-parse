@@ -69,22 +69,20 @@ class Parser(object):
             'name': None,
             'owner': None,
         }
-        regexes = [
-            (r'^(?P<protocol>https?|git|ssh|rsync)\://'
-                '(?:(?P<user>.+)@)*'
-                '(?P<resource>[a-z0-9_.-]*)'
-                '[:/]*'
-                '(?P<port>[\d]+){0,1}'
-                '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
-            (r'^(?:(?P<user>.+)@)*'
-                '(?P<resource>[a-z0-9_.-]*)[:/]*'
-                '(?P<port>[\d]+){0,1}'
-                '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)')
-                ]
+        regexes = [(r'^(?P<protocol>https?|git|ssh|rsync)\://'
+                    '(?:(?P<user>.+)@)*'
+                    '(?P<resource>[a-z0-9_.-]*)'
+                    '[:/]*'
+                    '(?P<port>[\d]+){0,1}'
+                    '(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
+                   (r'^(?:(?P<user>.+)@)*'
+                    '(?P<resource>[a-z0-9_.-]*)[:/]*'
+                    '(?P<port>[\d]+){0,1}'
+                    '[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)')]
         for regex in regexes:
             if re.search(regex, self._url):
                 m = re.search(regex, self._url)
-                d.update( m.groupdict() )
+                d.update(m.groupdict())
                 break
         else:
             msg = "Invalid URL '{}'".format(self._url)
