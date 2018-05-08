@@ -247,6 +247,17 @@ def git_urls():
             'name': 'repo',
             'owner': 'owner',
         },
+        'https://user@example.org/user/repo': {
+            'pathname': '/user/repo',
+            'protocols': ['https'],
+            'protocol': 'https',
+            'href': 'https://user@example.org/user/repo',
+            'resource': 'example.org',
+            'user': 'user',
+            'port': None,
+            'name': 'repo',
+            'owner': 'user',
+        },
     }
 
 
