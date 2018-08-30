@@ -262,5 +262,5 @@ def git_urls():
 
 
 @pytest.fixture()
-def invalid_urls():
-    return []
+def invalid_strings():
+    return ['', 'not a valid URL']
