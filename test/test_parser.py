@@ -41,9 +41,9 @@ def test_parse(git_urls):
         assert d['owner'] == result.owner
 
 
-def test_parse_raises_on_invalid_url(invalid_urls):
-    for url in invalid_urls:
-        p = parser.Parser(url)
+def test_parse_raises_on_invalid_string(invalid_strings):
+    for invalid_string in invalid_strings:
+        p = parser.Parser(invalid_string)
         with pytest.raises(parser.ParserError):
             p.parse()
 
