@@ -23,6 +23,18 @@
 import collections
 import re
 
+Parsed = collections.namedtuple('Parsed', [
+    'pathname',
+    'protocols',
+    'protocol',
+    'href',
+    'resource',
+    'user',
+    'port',
+    'name',
+    'owner',
+])
+
 
 class ParserError(Exception):
     """ Error raised when a URL can't be parsed. """
@@ -36,19 +48,6 @@ class Parser(object):
 
     def __init__(self, url):
         self._url = url
-
-    def get_parsed(self):
-        return collections.namedtuple('Parsed', [
-            'pathname',
-            'protocols',
-            'protocol',
-            'href',
-            'resource',
-            'user',
-            'port',
-            'name',
-            'owner',
-        ])
 
     def parse(self):
         """
@@ -102,9 +101,7 @@ class Parser(object):
             msg = "Invalid URL '{}'".format(self._url)
             raise ParserError(msg)
 
-        p = self.get_parsed()
-
-        return p(**d)
+        return Parsed(**d)
 
     def _get_protocols(self):
         try:
