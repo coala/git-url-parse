@@ -107,7 +107,7 @@ class Parser(object):
     def _get_protocols(self):
         try:
             index = self._url.index('://')
-
-            return self._url[0:index].split('+')
         except ValueError:
             return []
+
+        return self._url[:index].split('+')
