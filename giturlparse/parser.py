@@ -35,6 +35,31 @@ Parsed = collections.namedtuple('Parsed', [
     'owner',
 ])
 
+POSSIBLE_REGEXES = (
+    re.compile(r'^(?P<protocol>https?|git|ssh|rsync)\://'
+               r'(?:(?P<user>.+)@)*'
+               r'(?P<resource>[a-z0-9_.-]*)'
+               r'[:/]*'
+               r'(?P<port>[\d]+){0,1}'
+               r'(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
+    re.compile(r'(git\+)?'
+               r'((?P<protocol>\w+)://)'
+               r'((?P<user>\w+)@)?'
+               r'((?P<resource>[\w\.\-]+))'
+               r'(:(?P<port>\d+))?'
+               r'(?P<pathname>(\/(?P<owner>\w+)/)?'
+               r'(\/?(?P<name>[\w\-]+)(\.git)?)?)'),
+    re.compile(r'^(?:(?P<user>.+)@)*'
+               r'(?P<resource>[a-z0-9_.-]*)[:/]*'
+               r'(?P<port>[\d]+){0,1}'
+               r'[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)'),
+    re.compile(r'((?P<user>\w+)@)?'
+               r'((?P<resource>[\w\.\-]+))'
+               r'[\:\/]{1,2}'
+               r'(?P<pathname>((?P<owner>\w+)/)?'
+               r'((?P<name>[\w\-]+)(\.git)?)?)'),
+)
+
 
 class ParserError(Exception):
     """ Error raised when a URL can't be parsed. """
@@ -68,34 +93,10 @@ class Parser(object):
             'name': None,
             'owner': None,
         }
-        regexes = [
-            (r'^(?P<protocol>https?|git|ssh|rsync)\://'
-             r'(?:(?P<user>.+)@)*'
-             r'(?P<resource>[a-z0-9_.-]*)'
-             r'[:/]*'
-             r'(?P<port>[\d]+){0,1}'
-             r'(?P<pathname>\/(?P<owner>.+)/(?P<name>.+).git)'),
-            (r'(git\+)?'
-             r'((?P<protocol>\w+)://)'
-             r'((?P<user>\w+)@)?'
-             r'((?P<resource>[\w\.\-]+))'
-             r'(:(?P<port>\d+))?'
-             r'(?P<pathname>(\/(?P<owner>\w+)/)?'
-             r'(\/?(?P<name>[\w\-]+)(\.git)?)?)'),
-            (r'^(?:(?P<user>.+)@)*'
-             r'(?P<resource>[a-z0-9_.-]*)[:/]*'
-             r'(?P<port>[\d]+){0,1}'
-             r'[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)'),
-            (r'((?P<user>\w+)@)?'
-             r'((?P<resource>[\w\.\-]+))'
-             r'[\:\/]{1,2}'
-             r'(?P<pathname>((?P<owner>\w+)/)?'
-             r'((?P<name>[\w\-]+)(\.git)?)?)'),
-        ]
-        for regex in regexes:
-            if re.search(regex, self._url):
-                m = re.search(regex, self._url)
-                d.update(m.groupdict())
+        for regex in POSSIBLE_REGEXES:
+            match = regex.search(self._url)
+            if match:
+                d.update(match.groupdict())
                 break
         else:
             msg = "Invalid URL '{}'".format(self._url)
