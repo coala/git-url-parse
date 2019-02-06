@@ -1,3 +1,9 @@
+.. image:: http://img.shields.io/travis/retr0h/git-url-parse.svg?style=flat-square
+    :target: https://travis-ci.org/retr0h/git-url-parse
+
+.. image:: https://img.shields.io/coveralls/github/retr0h/git-url-parse.svg?style=flat-square
+    :target: https://coveralls.io/github/retr0h/git-url-parse
+
 ***********
 giturlparse
 ***********
