@@ -3,4 +3,3 @@ pytest
 pytest-cov
 pytest-mock
 yapf==0.21.0
-python-coveralls==2.9.1
