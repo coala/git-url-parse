@@ -7,7 +7,7 @@
 .. image:: https://img.shields.io/pypi/v/git-url-parse.svg?style=popout-square&logo=python
   :target: https://pypi.org/project/git-url-parse/
 
-.. image:: https://readthedocs.org/projects/git-url-parse/badge/?version=latest&style=flat-square
+.. image:: https://img.shields.io/readthedocs/git-url-parse.svg?style=popout-square&logo=Read%20the%20Docs
   :target: https://git-url-parse.readthedocs.io/en/latest/
 
 ***********
