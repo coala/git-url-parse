@@ -4,6 +4,12 @@
 .. image:: https://img.shields.io/codecov/c/github/retr0h/git-url-parse.svg?style=popout-square&logo=codecov
   :target: https://codecov.io/gh/retr0h/git-url-parse
 
+.. image:: https://img.shields.io/pypi/v/git-url-parse.svg?style=for-the-badge
+  :target: https://pypi.org/project/git-url-parse/
+
+.. image:: https://readthedocs.org/projects/git-url-parse/badge/?version=latest&style=for-the-badge
+  :target: https://git-url-parse.readthedocs.io/en/latest/
+
 ***********
 giturlparse
 ***********
