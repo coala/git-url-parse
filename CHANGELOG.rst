@@ -2,6 +2,12 @@
 History
 *******
 
+1.2
+===
+
+* Improved parsing speed by compiling regex on global context and reusing
+  named collection.
+
 1.1
 ===
 
@@ -11,6 +17,7 @@ History
 * Pass pep8 and yapf.
 * Added to travis ci.
 * Execute one regex at a time.
+
 
 1.0.2
 =====

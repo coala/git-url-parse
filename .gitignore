@@ -4,6 +4,8 @@
 .coverage
 .eggs/
 .tox/
+build/
 coverage.*
+dist/
 doc/build/
 htmlcov/
