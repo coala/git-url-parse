@@ -1,9 +1,8 @@
 .. image:: http://img.shields.io/travis/retr0h/git-url-parse.svg?style=popout-square&logo=travis
   :target: https://travis-ci.org/retr0h/git-url-parse
 
-.. image:: https://img.shields.io/codecov/c/git/retr0h/git-url-parse.svg?style=popout-square&logo=codecov
+.. image:: https://img.shields.io/codecov/c/github/retr0h/git-url-parse.svg?style=popout-square&logo=codecov
   :target: https://codecov.io/gh/retr0h/git-url-parse
-
 
 ***********
 giturlparse
