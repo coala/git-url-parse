@@ -25,8 +25,15 @@ import pytest
 from giturlparse import parser
 
 
-def test_parse(git_urls):
-    for url, d in git_urls.items():
+@pytest.mark.parametrize("test_input", [
+    'first_match_urls',
+    'second_match_urls',
+    'third_match_urls',
+    'fourth_match_urls',
+])
+def test_parse(request, test_input):
+    url_data = request.getfixturevalue(test_input)
+    for url, d in url_data.items():
         p = parser.Parser(url)
         result = p.parse()
 
