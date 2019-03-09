@@ -2,6 +2,11 @@
 History
 *******
 
+1.2.1
+=====
+
+* Corrected processing of URLs with a hyphen.
+
 1.2
 ===
 
