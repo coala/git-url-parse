@@ -236,6 +236,30 @@ def first_match_urls():
             'name': 'sphinx',
             'owner': 'sphinx-doc',
         },
+        # https://github.com/retr0h/git-url-parse/issues/33
+        'https://github.com/tterranigma/Stouts.openvpn': {
+            'pathname': '/tterranigma/Stouts.openvpn',
+            'protocols': ['https'],
+            'protocol': 'https',
+            'href': 'https://github.com/tterranigma/Stouts.openvpn',
+            'resource': 'github.com',
+            'user': None,
+            'port': None,
+            'name': 'Stouts.openvpn',
+            'owner': 'tterranigma',
+        },
+        # https://github.com/retr0h/git-url-parse/issues/33
+        'https://github.com/tterranigma/Stouts.openvpn.git': {
+            'pathname': '/tterranigma/Stouts.openvpn.git',
+            'protocols': ['https'],
+            'protocol': 'https',
+            'href': 'https://github.com/tterranigma/Stouts.openvpn.git',
+            'resource': 'github.com',
+            'user': None,
+            'port': None,
+            'name': 'Stouts.openvpn',
+            'owner': 'tterranigma',
+        },
     }
 
 
