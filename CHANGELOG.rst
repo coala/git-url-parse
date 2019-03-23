@@ -2,6 +2,11 @@
 History
 *******
 
+1.2.2
+=====
+
+* Corrected processing of name with a dot.
+
 1.2.1
 =====
 
