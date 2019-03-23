@@ -42,7 +42,7 @@ POSSIBLE_REGEXES = (
                r'[:/]*'
                r'(?P<port>[\d]+){0,1}'
                r'(?P<pathname>\/((?P<owner>[\w\-]+)\/)?'
-               r'((?P<name>[\w\-]+)(\.git)?)?)$'),
+               r'((?P<name>[\w\-\.]+?)(\.git)?)?)$'),
     re.compile(r'(git\+)?'
                r'((?P<protocol>\w+)://)'
                r'((?P<user>\w+)@)?'
