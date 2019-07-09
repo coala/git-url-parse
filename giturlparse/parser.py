@@ -51,9 +51,9 @@ POSSIBLE_REGEXES = (
                r'(?P<pathname>(\/(?P<owner>\w+)/)?'
                r'(\/?(?P<name>[\w\-]+)(\.git)?)?)$'),
     re.compile(r'^(?:(?P<user>.+)@)*'
-               r'(?P<resource>[a-z0-9_.-]*)[:/]*'
+               r'(?P<resource>[a-z0-9_.-]*)[:]*'
                r'(?P<port>[\d]+){0,1}'
-               r'[:](?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)$'),
+               r'(?P<pathname>\/?(?P<owner>.+)/(?P<name>.+).git)$'),
     re.compile(r'((?P<user>\w+)@)?'
                r'((?P<resource>[\w\.\-]+))'
                r'[\:\/]{1,2}'
